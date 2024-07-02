@@ -71,7 +71,7 @@ async fn get_user(path: web::Path<String>, col: web::Data<Collection<User>>) -> 
     let email = path.into_inner();
     // println!("{}",email);
     match col
-        .find_one(doc! { "email": &email.to_lowercase() }, None)
+        .find_one(doc! { "email": &email.to_lowercase() })
         .await
     {
         Ok(Some(user)) => HttpResponse::Ok().json(user),
